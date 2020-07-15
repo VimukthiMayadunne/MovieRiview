@@ -10,4 +10,7 @@ def loadModule():
     predictions_nb = text_clf_nb.predict(X_test)
     print(metrics.accuracy_score(y_test, predictions_lsvc))
     print(metrics.accuracy_score(y_test, predictions_nb))
-    return text_clf_lsvc
+    if (metrics.accuracy_score(y_test, predictions_lsvc)) > (metrics.accuracy_score(y_test, predictions_nb)):
+        return text_clf_lsvc
+    else:
+        return text_clf_nb
