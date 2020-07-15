@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_json_schema import JsonSchema, JsonValidationError
 
 from schemas.infoSchema import dataRecived
+from src.classifier import getRivewType
 
 app = Flask(__name__)
 CORS(app)
@@ -19,7 +20,7 @@ def validation_error(e):
     return jsonify({'error': e.message, 'errors': [validation_error.message for validation_error in e.errors]})
 
 
-@app.route("/getTreatment", methods=['GET', 'POST'])
+@app.route("/gettype", methods=['GET', 'POST'])
 @schema.validate(dataRecived)
 def treatment():
     if request.method == 'GET':
