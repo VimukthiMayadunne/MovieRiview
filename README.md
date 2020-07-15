@@ -9,7 +9,7 @@ Clone or download this GitHub repo
 - Python3
 - pip3
 
-### Installing
+### Installing and Runing
 
 Clone or download this GitHub repo.
 Then navigate to the repo and run run the following command to install all the required dependencies 
@@ -32,7 +32,7 @@ http://0.0.0.0:8080/
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 ## Acknowledgments
 
