@@ -3,11 +3,12 @@ from flask_cors import CORS
 from flask_json_schema import JsonSchema, JsonValidationError
 
 from schemas.infoSchema import dataRecived
-from src.classifier import getRivewType
+from src.classifier import loadModel
 
 app = Flask(__name__)
 CORS(app)
 schema = JsonSchema(app)
+model = loadModel()
 
 
 @app.route("/")
@@ -28,7 +29,7 @@ def treatment():
 
     elif request.method == 'POST':
         data = request.json
-        results = getRivewType(data)
+        results = model.predict()
         return jsonify(isError=False, message=results, statusCode=200), 200
     else:
         return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
