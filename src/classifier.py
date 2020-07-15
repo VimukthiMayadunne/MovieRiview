@@ -1,5 +1,4 @@
 from sklearn import metrics
-
 from src.support import getDataFrame, splitData, trainModel
 
 
