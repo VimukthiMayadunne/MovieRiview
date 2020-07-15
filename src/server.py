@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
 from flask_json_schema import JsonSchema, JsonValidationError
 
@@ -12,8 +12,8 @@ model = loadModule()
 
 
 @app.route("/")
-def hello():
-    return jsonify(isError=False, message="Welcome To Movie Review Classifier ", statusCode=200), 200
+def root():
+    return render_template('home.html')
 
 
 @app.errorhandler(JsonValidationError)
@@ -25,7 +25,10 @@ def validation_error(e):
 @schema.validate(dataRecived)
 def treatment():
     if request.method == 'GET':
-        return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
+        review = [request.args.get('review')]
+        results = model.predict(review)
+        response = results.tolist()
+        return jsonify(isError=False, message=response[0], statusCode=200), 200
 
     elif request.method == 'POST':
         data = request.json
@@ -38,5 +41,6 @@ def treatment():
 
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
+    app.run(host='0.0.0.0', debug=True)
+    #from waitress import serve
+    #serve(app, host="0.0.0.0", port=8080)
