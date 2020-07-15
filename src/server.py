@@ -29,7 +29,7 @@ def treatment():
 
     elif request.method == 'POST':
         data = request.json
-        results = model.predict()
+        results = model.predict(data.get('review'))
         return jsonify(isError=False, message=results, statusCode=200), 200
     else:
         return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
