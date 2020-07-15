@@ -25,18 +25,18 @@ def validation_error(e):
 @schema.validate(dataRecived)
 def treatment():
     if request.method == 'GET':
-        return jsonify(isError=False, message="Success", statusCode=200), 200
+        return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
 
     elif request.method == 'POST':
         data = request.json
         review = [data.get('review')]
         results = model.predict(review)
         response = results.tolist()
-        print(results)
         return jsonify(isError=False, message=response[0], statusCode=200), 200
     else:
         return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
