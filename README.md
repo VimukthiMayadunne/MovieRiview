@@ -1,9 +1,6 @@
 # MovieRiview
 NLP module to classify riview negative and positive
 
-
-Clone or download this GitHub repo
-
 ### Prerequisites
 
 - Python3
