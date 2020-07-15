@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 70%;
+          margin-left:15%;
+          margin-right:15%;
+          margin-top:5%
+        }
+
+        #customers td, #customers th {
+          border: 2px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:nth-child(odd){background-color: #fff;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #3b5998;
+          color: white;
+        }
+        body {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <table id="customers">
+  <thead>
+  <th colspan="2"> Movie Review Results</th>
+  </thead>
+  <tbody>
+    <tr>
+        <td><strong>Movie Name</strong></td>
+      <td>{{movie}}</td>
+    </tr>
+    <tr>
+      <td><strong>Review Type</strong></td>
+      <td>{{type}}</td>
+    </tr>
+    <tr>
+      <td><strong>Review</strong></td>
+      <td>{{review}}</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

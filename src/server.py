@@ -28,13 +28,16 @@ def treatment():
         review = [request.args.get('review')]
         results = model.predict(review)
         response = results.tolist()
-        return jsonify(isError=False, message=response[0], statusCode=200), 200
+        value= 'Positive' if response[0] == 'pos' else 'Negative'
+        return render_template('response.html', movie=request.args.get('movie'), type=value,
+                               review=request.args.get('review'))
 
     elif request.method == 'POST':
         data = request.json
         review = [data.get('review')]
         results = model.predict(review)
         response = results.tolist()
+        print(response)
         return jsonify(isError=False, message=response[0], statusCode=200), 200
     else:
         return jsonify(isError=True, message="Unauthorized method", statusCode=401), 401
@@ -42,5 +45,5 @@ def treatment():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
-    #from waitress import serve
-    #serve(app, host="0.0.0.0", port=8080)
+    # from waitress import serve
+    # serve(app, host="0.0.0.0", port=8080)
