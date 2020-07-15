@@ -1,8 +1,14 @@
-import numpy as np
-import pandas as pd
+from sklearn import metrics
 
-df = pd.read_csv('../data/moviereviews2.tsv', sep='\t')
+from src.support import getDataFrame, splitData, trainModel
 
 
 def getRivewType(data):
+    df = getDataFrame()
+    X_train, X_test, y_train, y_test = splitData(df)
+    text_clf_nb, text_clf_lsvc = trainModel(X_train, X_test, y_train, y_test)
+    predictions_lsvc = text_clf_lsvc.predict(X_test)
+    predictions_nb = text_clf_nb.predict(X_test)
+    print(metrics.accuracy_score(y_test, predictions_lsvc))
+    print(metrics.accuracy_score(y_test, predictions_nb))
     return "Request Recived"
